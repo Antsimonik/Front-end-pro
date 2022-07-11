@@ -1,8 +1,8 @@
 const firstName = prompt ("What's you first name?", "John");
 const lastName = prompt ("What's you last name?", "Doe");
-const dayOfBirth = prompt ("What's you day of birth?", 12);
-const monthOfBirth = prompt ("What's you month of birth?", 11);
-const yearOfBirth = prompt ("What's you year of birth?", 1988);
+const dayOfBirth = +prompt ("What's you day of birth?", 12);
+const monthOfBirth = +prompt ("What's you month of birth?", 11);
+const yearOfBirth = +prompt ("What's you year of birth?", 1988);
 
 const CURRENT_YEAR = 2022;
 const age = (CURRENT_YEAR - yearOfBirth);
@@ -44,74 +44,40 @@ const Sagittarius = monthOfBirth == November && dayOfBirth >= 22 || monthOfBirth
 
 const Capricorn = monthOfBirth == December && dayOfBirth >= 22 || monthOfBirth == January && dayOfBirth <= 19;
 
+let zodiakSign;
+
 if (Aquarius) {
-  console.log ("Aquarius ♒");
+  zodiakSign = "Aquarius ♒";
 } else if (Pisces) {
-  console.log ("Pisces ♓");
+  zodiakSign = "Pisces ♓";
 } else if (Aries) {
-  console.log ("Aries ♈");
+  zodiakSign = "Aries ♈";
 } else if (Taurus) {
-  console.log ("Taurus ♉");
+  zodiakSign = "Taurus ♉";
 } else if (Gemini) {
-  console.log ("Gemini ♊");
+  zodiakSign = "Gemini ♊";
 } else if (Cancer) {
-  console.log ("Cancer ♋");
+  zodiakSign = "Cancer ♋";
 } else if (Leo) {
-  console.log ("Leo ♌");
+  zodiakSign = "Leo ♌";
 } else if (Virgo) {
-  console.log ("Virgo ♍");
+  zodiakSign = "Virgo ♍";
 } else if (Libra) {
-  console.log ("Libra ♎");
+  zodiakSign = "Libra ♎";
 } else if (Scorpio) {
-  console.log ("Scorpio ♏");
+  zodiakSign = "Scorpio ♏";
 } else if (Sagittarius) {
-  console.log ("Sagittarius ♐");
+  zodiakSign = "Sagittarius ♐";
 } else if (Capricorn) {
-  console.log ("Capricorn ♑");
+  zodiakSign = "Capricorn ♑";
 }
 
-const isLeapYear = (yearOfBirth % 400 === 0 || yearOfBirth % 4 === 0 && yearOfBirth % 100 !== 0);
-console.log (isLeapYear);
+let isLeapYear = (yearOfBirth % 400 === 0 || yearOfBirth % 4 === 0 && yearOfBirth % 100 !== 0);
+let isNotLeapYear = isLeapYear !== true;
 
-
-/*if (monthOfBirth && dayOfBirth === Aquarius) {
-  console.log ("skdfalfskfkdla");
-};*/
-
-/*if (dayOfBirth >= 20 && monthOfBirth === January || dayOfBirth <= 18 && monthOfBirth === February) {
-  console.log("Aquarius");
-} else if (dayOfBirth >= 19 && monthOfBirth === February || dayOfBirth <= 20 && monthOfBirth === March); {
-  console.log("Pisces");
-}*/
-
-//const monthDayHoroscop = (monthOfBirth && dayOfBirth);
-
-
-
-//const Aquarius = (monthOfBirth == "January" && (dayOfBirth >= 20) || monthOfBirth == "January" && (dayOfBirth <= 31) || monthOfBirth == "February" (dayOfBirth <= 18));
-
-//const dayHoroscop = 
-//if (monthOfBirth == ("January" && (dayOfBirth >= 20)) || monthOfBirth == "January" && (dayOfBirth <= 31) || monthOfBirth == "February" (dayOfBirth <= 18)) {
-  //console.log ("User Bio:", firstName, lastName + ",", age, "years old,", "Aquarius", "♒");
-//}
-//if (monthOfBirth === ("January" && (dayOfBirth >= 20 ||dayOfBirth <= 31)) || "February" && (dayOfBirth <= 18)) {
-  
-//  console.log ("User Bio:", firstName, lastName + ",", age, "years old,", "Aquarius", "♒");
-
-//} else if (monthOfBirth === ("February" && (dayOfBirth >= 19 || dayOfBirth <= 28)) || "March" && (dayOfBirth <= 20)) {
-//  console.log ("User Bio:", firstName, lastName + ",", age, "years old,", "Pisces", "♓");
-//}
-
-
-//if (Aquarius == monthDayHoroscop) {
-//  console.log("Aquarius");
-//}
-
-//if (userHoroscop) {
-//  January && February &&  
-//}
-//if (dayOfBirth ) {
-//  January && February &&  
-//}
-
-//console.log ("User Bio:", firstName, lastName + ",", age, "years old")
+if (isLeapYear) {
+  isLeapYear = "(leap year),";
+  console.log ("User Bio:", firstName, lastName + ",", age, "years old", isLeapYear, zodiakSign);
+} else if (isNotLeapYear) {
+  console.log ("User Bio:", firstName, lastName + ",", age, "years old,", zodiakSign);
+}
