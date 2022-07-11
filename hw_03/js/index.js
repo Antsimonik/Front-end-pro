@@ -70,6 +70,10 @@ if (Aquarius) {
   console.log ("Capricorn ♑");
 }
 
+const isLeapYear = (yearOfBirth % 400 === 0 || yearOfBirth % 4 === 0 && yearOfBirth % 100 !== 0);
+console.log (isLeapYear);
+
+
 /*if (monthOfBirth && dayOfBirth === Aquarius) {
   console.log ("skdfalfskfkdla");
 };*/
