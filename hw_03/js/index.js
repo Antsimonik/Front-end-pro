@@ -20,64 +20,51 @@ const October = 10;
 const November = 11;
 const December = 12;
 
-const Aquarius = monthOfBirth == January && dayOfBirth >= 20 || monthOfBirth == February && dayOfBirth <= 18;
-
-const Pisces = monthOfBirth == February && dayOfBirth >= 19 || monthOfBirth == March && dayOfBirth <= 20;
-
-const Aries = monthOfBirth == March && dayOfBirth >= 21 || monthOfBirth == April && dayOfBirth <= 19;
-
-const Taurus = monthOfBirth == April && dayOfBirth >= 20 || monthOfBirth == May && dayOfBirth <= 20;
-
-const Gemini = monthOfBirth == May && dayOfBirth >= 21 || monthOfBirth == June && dayOfBirth <= 20;
-
-const Cancer = monthOfBirth == June && dayOfBirth >= 21 || monthOfBirth == July && dayOfBirth <= 22;
-
-const Leo = monthOfBirth == July && dayOfBirth >= 23 || monthOfBirth == August && dayOfBirth <= 22;
-
-const Virgo = monthOfBirth == August && dayOfBirth >= 23 || monthOfBirth == September && dayOfBirth <= 22;
-
-const Libra = monthOfBirth == September && dayOfBirth >= 23 || monthOfBirth == October && dayOfBirth <= 22;
-
-const Scorpio = monthOfBirth == October && dayOfBirth >= 23 || monthOfBirth == November && dayOfBirth <= 21;
-
-const Sagittarius = monthOfBirth == November && dayOfBirth >= 22 || monthOfBirth == December && dayOfBirth <= 21;
-
-const Capricorn = monthOfBirth == December && dayOfBirth >= 22 || monthOfBirth == January && dayOfBirth <= 19;
-
+let Aquarius;
+let Pisces;
+let Aries;
+let Taurus;
+let Gemini;
+let Cancer;
+let Leo;
+let Virgo;
+let Libra;
+let Scorpio;
+let Sagittarius;
+let Capricorn;
 let zodiakSign;
 
-if (Aquarius) {
-  zodiakSign = "Aquarius ♒";
-} else if (Pisces) {
-  zodiakSign = "Pisces ♓";
-} else if (Aries) {
-  zodiakSign = "Aries ♈";
-} else if (Taurus) {
-  zodiakSign = "Taurus ♉";
-} else if (Gemini) {
-  zodiakSign = "Gemini ♊";
-} else if (Cancer) {
-  zodiakSign = "Cancer ♋";
-} else if (Leo) {
-  zodiakSign = "Leo ♌";
-} else if (Virgo) {
-  zodiakSign = "Virgo ♍";
-} else if (Libra) {
-  zodiakSign = "Libra ♎";
-} else if (Scorpio) {
-  zodiakSign = "Scorpio ♏";
-} else if (Sagittarius) {
-  zodiakSign = "Sagittarius ♐";
-} else if (Capricorn) {
-  zodiakSign = "Capricorn ♑";
+if (monthOfBirth == January && dayOfBirth >= 20 || monthOfBirth == February && dayOfBirth <= 18) {
+  Aquarius = zodiakSign = "Aquarius ♒";
+} else if (monthOfBirth == February && dayOfBirth >= 19 || monthOfBirth == March && dayOfBirth <= 20) {
+  Pisces = zodiakSign = "Pisces ♓";
+} else if (monthOfBirth == March && dayOfBirth >= 21 || monthOfBirth == April && dayOfBirth <= 19) {
+  Aries = zodiakSign = "Pisces ♓";
+} else if (monthOfBirth == April && dayOfBirth >= 20 || monthOfBirth == May && dayOfBirth <= 20) {
+  Taurus = zodiakSign = "Taurus ♉";
+} else if (monthOfBirth == May && dayOfBirth >= 21 || monthOfBirth == June && dayOfBirth <= 20) {
+  Gemini = zodiakSign = "Gemini ♊";
+} else if (monthOfBirth == June && dayOfBirth >= 21 || monthOfBirth == July && dayOfBirth <= 22) {
+  Cancer = zodiakSign = "Cancer ♋";
+} else if (monthOfBirth == July && dayOfBirth >= 23 || monthOfBirth == August && dayOfBirth <= 22) {
+  Leo = zodiakSign = "Leo ♌";
+} else if (monthOfBirth == August && dayOfBirth >= 23 || monthOfBirth == September && dayOfBirth <= 22) {
+  Virgo = zodiakSign = "Virgo ♍";
+} else if (monthOfBirth == September && dayOfBirth >= 23 || monthOfBirth == October && dayOfBirth <= 22) {
+  Libra = zodiakSign = "Libra ♎";
+} else if (monthOfBirth == October && dayOfBirth >= 23 || monthOfBirth == November && dayOfBirth <= 21) {
+  Scorpio = zodiakSign = "Scorpio ♏";
+} else if (monthOfBirth == November && dayOfBirth >= 22 || monthOfBirth == December && dayOfBirth <= 21) {
+  Sagittarius = zodiakSign = "Sagittarius ♐";
+} else if (monthOfBirth == December && dayOfBirth >= 22 || monthOfBirth == January && dayOfBirth <= 19) {
+  Capricorn = zodiakSign = "Capricorn ♑";
 }
 
 let isLeapYear = (yearOfBirth % 400 === 0 || yearOfBirth % 4 === 0 && yearOfBirth % 100 !== 0);
-let isNotLeapYear = isLeapYear !== true;
 
 if (isLeapYear) {
   isLeapYear = "(leap year),";
   console.log ("User Bio:", firstName, lastName + ",", age, "years old", isLeapYear, zodiakSign);
-} else if (isNotLeapYear) {
+} else {
   console.log ("User Bio:", firstName, lastName + ",", age, "years old,", zodiakSign);
 }
