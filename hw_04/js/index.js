@@ -1,7 +1,5 @@
 const strSentences = prompt ("Enter sentences", "How much is the fish?");
 
-const isOperation = [1, 2, 3, 4]; 
-
 let operationId = +prompt( `1. Узнать unicode значение. 
 2. Удалить символ из строки.
 3. Заменить символ из строки на случайный смайлик.
@@ -9,31 +7,36 @@ let operationId = +prompt( `1. Узнать unicode значение.
 
 operationId = Math.ceil(operationId);
 
-let isUnicode = 1;
-let isDeleteSymbol = 2;
-let isChangeSymbol = 3;
-let isLengthSymbol = 4;
+const IS_UNICOD = 1,
+      IS_DELETE_SYMBOL = 2,
+      IS_CHANGE_SYMBOL = 3,
+      IS_LENGTH_SYMBOL = 4;
 
-let isSmile = ["😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃"];
-let isSmileIndex = getRandomIntInclusive(0, 9);
-isSmileIndex = isSmile[isSmileIndex];
+let smile = ["😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃"];
+let smileIndex = getRandomIntInclusive(0, 9);
+smileIndex = smile[smileIndex];
+let showUnicode,
+    deleteSymbol,
+    changeSymbol,
+    lengthSymbol;
 
-if (operationId === isUnicode) {
-  isUnicode = prompt ("which symbol to choose?");
-  isUnicode = strSentences.replaceAll(" ", "").charCodeAt(isUnicode);
-  alert (`1. Unicode значение указанного пользователем: ${isUnicode}`);
-} else if (operationId === isDeleteSymbol) {
-  isDeleteSymbol = prompt ("Which symbol delete?");
-  isDeleteSymbol = strSentences.slice(0, isDeleteSymbol-1) + strSentences.slice(isDeleteSymbol);
-  alert (`2. Удалить указанный пользователем символ из строки: ${isDeleteSymbol}`);
-} else if (operationId === isChangeSymbol) {
-  isChangeSymbol = prompt ("Which symbol change?");
-  isChangeSymbol = strSentences.charAt(isChangeSymbol);
-  isChangeSymbol = strSentences.replace(isChangeSymbol, isSmileIndex);
-  alert (`3. Заменить указанный пользователем символ из строки (по индексу) на случайный смайлик: ${isChangeSymbol}`);
-} else if (operationId === isLengthSymbol) {
-  isLengthSymbol = strSentences.replaceAll(" ", "").length;
-  alert (`4. Узнать количество букв в строке (без пробелов): ${isLengthSymbol}`);
+if (operationId === IS_UNICOD) {
+  operationId = prompt ("Выберите индекс:");
+  showUnicode = strSentences.charCodeAt(operationId);
+  alert (`1. Unicode значение указанного пользователем: ${showUnicode}`);
+} else if (operationId === IS_DELETE_SYMBOL) {
+  operationId = +prompt ("Выберите индекс для удаления:");
+  deleteSymbol = strSentences.substring(0, operationId) 
+  + "" + strSentences.substring(operationId + 1);
+  alert (`2. Удалить указанный пользователем символ из строки: ${deleteSymbol}`);
+} else if (operationId === IS_CHANGE_SYMBOL) {
+  operationId = +prompt ("Выберите индекс для замены:");
+  changeSymbol = strSentences.substring(0, operationId) 
+  + smileIndex + strSentences.substring(operationId + 1);
+  alert (`3. Заменить указанный пользователем символ из строки (по индексу) на случайный смайлик: ${changeSymbol}`);
+} else if (operationId === IS_LENGTH_SYMBOL) {
+  lengthSymbol = strSentences.replaceAll(" ", "").length;
+  alert (`4. Узнать количество букв в строке (без пробелов): ${lengthSymbol}`);
 }
 
 function getRandomIntInclusive(min, max) {
