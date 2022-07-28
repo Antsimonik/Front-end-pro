@@ -1,19 +1,14 @@
-let arr = [];
-    randomValue = Math.round(Math.random()*10);
-    result = 1;
+let arr = [], arrLng, mul = 1;
 
 do {
-    let userLength = +prompt(`Enter number of lenghts 2 - 10`);
-    userLength = Math.abs(userLength);
-    userLength = Math.round(userLength);
-    arr.length = userLength;
+    arrLng = +prompt(`Please, enter array lenght`);
+    if(arrLng) arrLng = Math.round(Math.abs(arrLng));
+} while (!arrLng || arrLng > 10 || arrLng < 2)
 
-    for (let i = 0; i<=userLength -1; i++){
-        arr[i] = randomValue;
-        result = result * arr[i];
-    }
-
-} while (!arr.length || arr.length < 2 || arr.length >10);
+for(let i = 0; i < arrLng; i++) {
+    arr[i] = Math.round(Math.random()*10); 
+    mul *= arr[i];
+}
 
 console.log(arr);
-console.log(result);
+console.log(mul);
