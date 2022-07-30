@@ -1,0 +1,44 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.krug {
+  display: flex;
+  gap: 10px;
+}
+
+.hell1 {
+  border-radius: 50%;
+  background-color:red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.hell2 {
+  border-radius: 50%;
+  background-color:red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.hell3 {
+  border-radius: 50%;
+  background-color:red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.hell4 {
+  border-radius: 50%;
+  background-color:red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.hell5 {
+  border-radius: 50%;
+  background-color:red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
