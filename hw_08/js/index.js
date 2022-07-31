@@ -11,32 +11,15 @@ let hero = ['Ivan'];
     
 console.log(rainbow);
 
-let red = ``;
-    orange = ``;
-    yellow = ``;
-    green = ``;
-    lightBlue = ``;
-    darkBlue = ``;
-    violet = ``;
-    circle = [].concat(red, orange, yellow, green, lightBlue, darkBlue, violet);
+let circle = ['red', 'orange', 'yellow', 'green', 'lightBlue', 'darkBlue', 'violet'];
 console.log(circle)
 
-let TDs = '';
+let final = [];
 
 for (let j = 0; j < circle.length; j++) {
-    TDs+=(`<td>${circle[j]}</td>`);
-}
+    final.push(`<div> 
+    <div class="circle" style="background-color: ${circle[j]}"></div>
+    <p>${rainbow[j]}</p></div>`)
+}    
 
-document.write(`<table>
-<tr>
-${TDs}
-</tr>`)
-
-for (j = 0; j < rainbow.length; j++) {
-    TDs+=(`<td>${rainbow[j]}</td>`);
-}
-
-document.write(`<table>
-<tr>
-${rainbow.join(` `)}
-</tr>`)
+document.write(`<div class="container">${final.join('')}</div>`)
