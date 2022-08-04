@@ -22,21 +22,21 @@ const universes = [
 function getInfo(array, title) {
 	let TRs = [];
 	for(let i=0; i<array.length; i++){
-			let TDs = [];
-			for(let j=0; j<array[i].length; j++){
-					TDs.push(`<td>${Array.isArray(array[i][j]) ? array[i][j].join(`; `) : array[i][j]}</td>`);
-			}
+		let TDs = [];
+		for(let j=0; j<array[i].length; j++){
+			TDs.push(`<td>${Array.isArray(array[i][j]) ? array[i][j].join(`; `) : array[i][j]}</td>`);
+		}
 
-			TRs.push(`<tr>${TDs.join(``)}</tr>`);
+		TRs.push(`<tr>${TDs.join(``)}</tr>`);
 	};
 	
 	document.write(`
-			<table>
-					<caption><b> ${title} info <b></caption>
-					<tbody>
-							${TRs.join(``)}
-					</tbody>
-			</table>
+		<table>
+			<caption><b> ${title} info <b></caption>
+			<tbody>
+				${TRs.join(``)}
+			</tbody>
+		</table>
 	`);
 };
 
