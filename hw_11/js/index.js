@@ -6,45 +6,69 @@ const products = [
 ];
 
 
-let copiedProducts = JSON.parse(JSON.stringify(products));
-const summerPrice = [].concat(copiedProducts[0][1], copiedProducts[2][1]);
-const winterPrice = [].concat(copiedProducts[1][1], copiedProducts[3][1]);
-// console.log(summerPrice)
-// console.log(winterPrice)
+let summerProducts;
+let winterProducts;
+// const summerPrice = [].concat(copiedProducts[0][1], copiedProducts[2][1]);
+// const winterPrice = [].concat(copiedProducts[1][1], copiedProducts[3][1]);
 let value;
 function getPrice(products, seasonFunc) {
-  // for(let j=0; j<copiedProducts.length; j++) {
-    // console.log(copiedProducts[j][1]);
-    // value = [].concat(copiedProducts[j][1]);
-    // value = [].concat(copiedProducts[0][1], copiedProducts[1][1], copiedProducts[2][1], copiedProducts[3][1]);
-    // console.log(value);
-    // copiedProducts = copiedProducts.splice(j,1);
-  // }
+  let copiedProducts = [];
+
+  if(products, seasonFunc){
+    for(let i=0; i<products.length; i++){
+      let copiedProductsInfo = products[i];
+      copiedProducts.push(copiedProductsInfo[1]);
+    }
+    summerProducts = [].concat(copiedProducts[0], copiedProducts[2]);
+    winterProducts = [].concat(copiedProducts[1], copiedProducts[3]);
+      console.log(summerProducts) 
+      console.log(winterProducts)
+    return copiedProducts;
+  }
 }
+console.log(products, summerValue)
 console.log(getPrice(products, seasonFunc));
+getPrice(products, summerValue);
+getPrice(products, winterValue);
+getPrice(products);
 
 function seasonFunc(summerValue, winterValue){
-}
-console.log (seasonFunc(summerPrice, winterPrice) )
+    return seasonFunc(sum(summerProducts), sum(winterProducts))
 
-function summerValue(...value){
-  return sum(...value)*0.8;
 }
-console.log( summerValue(...summerPrice))
+console.log (summerValue(sum(summerProducts)));
+console.log (winterValue(sum(winterProducts)));
+
+function summerValue(value){
+  return value*0.8;
+}
 
 function winterValue(...value){
-  return sum(...value)*2;
+  return value*2;
 }
-console.log( winterValue(...winterPrice));
 
-function sum(...args){
+function sum(args){
 
   let sumResult = 0;
   for(let i=0; i<args.length; i++) sumResult+= args[i];
     
   return sumResult;
 }
-console.log( sum(winterValue(...winterPrice), summerValue(...summerPrice)) );
+// console.log(sum(summerProducts))
+// console.log( sum(winterValue(...winterPrice), summerValue(...summerPrice)) );
+
+      // return typeof funcName === `function` 
+      //   ? (products, seasonFunc) 
+      //   : `funcName is not a function`;
+
+  // for(let j=0; j<copiedProducts.length; j++) {
+    // console.log(copiedProducts[j][1]);
+    // value = [].concat(copiedProducts[j][1]);
+    // value = [].concat(copiedProducts[0][1], copiedProducts[1][1], copiedProducts[2][1], copiedProducts[3][1]);
+    // console.log(value);
+    // copiedProducts = copiedProducts.splice(j,1);
+  
+  // }
 
 
 
