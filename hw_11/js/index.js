@@ -12,12 +12,6 @@ function getPrice(products, seasonFunc) {
   for(let i=0; i<products.length; i++){
     let innerArray = products[i];
 
-    // if(typeof seasonFunc === `function`){
-    //   sum += seasonFunc(innerArray[1]);
-    // } else{
-    //   sum += innerArray[1];
-    // }
-
     sum += typeof seasonFunc === `function` ? seasonFunc(innerArray[1]) : innerArray[1];
 
   }
