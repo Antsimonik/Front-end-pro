@@ -12,7 +12,7 @@ const TABLE_THEAD = [`Name`, `Comand`, `Score`, `Data`];
 copyUsers.forEach(
   function(element){
     let usersName = element[0] + `!`;
-    console.log(usersName) //.split()
+    console.log(usersName)
   }
 )
 
