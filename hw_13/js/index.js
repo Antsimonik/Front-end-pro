@@ -9,14 +9,25 @@ const obj = {
       k: 23,
       p: 13
   },
-  convert(){
-    let  newObj = {};
-    delete this.inner && delete this.foo2;
-    newObj = Object.assign(obj, inner, foo2);
-    newObj = obj;
-    return obj;
+  convert() {
+    let newObj = {};
+  
+    for(let key in this){
+      let objKey = this[key];
+  
+      if(typeof objKey === `object`) {
+  
+        for(let key in objKey){
+          newObj[key] = objKey[key];
+        }
+  
+      } else if (typeof objKey != `object`) {
+        newObj[key] = objKey;
+      }
+    }
+    return newObj;
   }
-} 
-const inner = obj.inner;
-const foo2 = obj.foo2;
-console.log(obj.convert())
+};
+
+console.log (obj.convert())
+
