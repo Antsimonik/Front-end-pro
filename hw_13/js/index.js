@@ -13,7 +13,7 @@ const obj = {
     let newObj = {};
   
     for(let key in this){
-      let objKey = this[key];
+      let objKey = this[key]
   
       if(typeof objKey === `object`) {
   
@@ -22,7 +22,7 @@ const obj = {
         }
   
       } else if (typeof objKey != `object`) {
-        newObj[key] = objKey;
+        newObj[key] = objKey
       }
     }
     return newObj;
