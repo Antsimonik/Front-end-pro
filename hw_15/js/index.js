@@ -103,14 +103,6 @@ class User{
 
   }
 
-	// getCourses(){
-	// 	let course = {}
-	// 	for(let key in this.courses){
-	// 		course[key] = this.courses[key];
-	// 		return course[key]
-	// 	}
-	// }
-
   render(){
 		return	`<div class="user">
 							<div class="user__info">
@@ -122,7 +114,7 @@ class User{
 											</div>
 									</div>
 									<div class="user__info--role student">
-											<img src="images/roles/${this.role}" alt="${this.role}" height="25">
+											<img src="../images/roles/${this.role}.png" alt="${this.role}" height="25">
 											<p>${this.role}</p>
 									</div>
 									${this.courses ? this.renderCourses() : ``}
@@ -149,23 +141,23 @@ class Admin extends User{
   }
 
   renderCourses(){
-		// <div class="user__courses admin--info">
-		// 	<div class="user__courses--course admin">
-		// 			<p>Title: <b>Front-end Pro</b></p>
-		// 			<p>Admin's score: <span class="satisfactory">satisfactory</span></p>
-		// 			<p>Lector: <b>Leo Smith</b></p>
-		// 	</div>
-		// 	<div class="user__courses--course admin">
-		// 			<p>Title: <b>Java Enterprise</b></p>
-		// 			<p>Admin's score: <span class="good">good</span></p>
-		// 			<p>Lector: <b>David Smith</b></p>
-		// 	</div>
-		// 	<div class="user__courses--course admin">
-		// 			<p>Title: <b>QA</b></p>
-		// 			<p>Admin's score: <span class="very-good">very-good</span></p>
-		// 			<p>Lector: <b>Emilie Smith</b></p>
-		// 	</div>
-		// </div>
+		return `<div class="user__courses admin--info">
+		<div class="user__courses--course admin">
+				<p>Title: <b>Front-end Pro</b></p>
+				<p>Admin's score: <span class="satisfactory">satisfactory</span></p>
+				<p>Lector: <b>Leo Smith</b></p>
+		</div>
+		<div class="user__courses--course admin">
+				<p>Title: <b>Java Enterprise</b></p>
+				<p>Admin's score: <span class="good">good</span></p>
+				<p>Lector: <b>David Smith</b></p>
+		</div>
+		<div class="user__courses--course admin">
+				<p>Title: <b>QA</b></p>
+				<p>Admin's score: <span class="very-good">very-good</span></p>
+				<p>Lector: <b>Emilie Smith</b></p>
+		</div>
+</div>`
 	}
 }
 
@@ -174,7 +166,18 @@ class Lector extends User{
       super(obj);
   }
 
-  renderCourses(){}
+  renderCourses(){
+		return `<div class="user__courses--course lector">
+		<p>Title: <b>Front-end Pro</b></p>
+		<p>Lector's score: <span class="very-good">very-good</span></p>
+		<p>Average student's score: <span class="very-good">very-good</span></p>
+</div>
+<div class="user__courses--course lector">
+		<p>Title: <b>Java Enterprise</b></p>
+		<p>Lector's score: <span class="very-good">very-good</span></p>
+		<p>Average student's score: <span class="very-good">very-good</span></p>
+</div>`
+	}
 }
 
 const USER_ROLES = {
