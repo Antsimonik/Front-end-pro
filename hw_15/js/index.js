@@ -98,59 +98,95 @@ const users = [
 ];
 
 class User{
-  constructor(user){
-    Object.assign(this, user);
-    console.log(this); 
+  constructor(obj){
+    Object.assign(this, obj);
 
-		this.getCourses();
   }
 
-	getCourses(){
-	}
+	// getCourses(){
+	// 	let course = {}
+	// 	for(let key in this.courses){
+	// 		course[key] = this.courses[key];
+	// 		return course[key]
+	// 	}
+	// }
 
   render(){
-		const DIVs = Object.keys(this)
-				.map(key => `<div>${key} : ${this[key]}</div>`)
-				.join(``);
-		return `<div class="user">${DIVs}</div>`
+		return	`<div class="user">
+							<div class="user__info">
+									<div class="user__info--data">
+											<img src="../images/users/${this.img}.png" alt="${this.name}" height="50">
+											<div class="user__naming">
+													<p>Name: <b>${this.name}</b></p>
+													<p>Age: <b>${this.age}</b></p>
+											</div>
+									</div>
+									<div class="user__info--role student">
+											<img src="images/roles/${this.role}" alt="${this.role}" height="25">
+											<p>${this.role}</p>
+									</div>
+									${this.courses ? this.renderCourses() : ``}
+							</div>`
   }
 
   renderCourses(){
-
+		return `<div class="user__courses">
+							<p class="user__courses--course student">Front-end Pro  <span class="satisfactory">satisfactory</span></p>
+							<p class="user__courses--course student">Java Enterprise <span class="excellent">excellent</span></p>
+						</div>`
   }
 }
 
 class Student extends User{
-  constructor(user){
-      super(user);
+  constructor(obj){
+      super(obj);
   }
-}
-
-class Lector extends User{
-  constructor(user){
-      super(user);
-  }
-
-  renderCourses(){}
 }
 
 class Admin extends User{
-  constructor(user){
-      super(user);
+  constructor(obj){
+      super(obj);
+  }
+
+  renderCourses(){
+		// <div class="user__courses admin--info">
+		// 	<div class="user__courses--course admin">
+		// 			<p>Title: <b>Front-end Pro</b></p>
+		// 			<p>Admin's score: <span class="satisfactory">satisfactory</span></p>
+		// 			<p>Lector: <b>Leo Smith</b></p>
+		// 	</div>
+		// 	<div class="user__courses--course admin">
+		// 			<p>Title: <b>Java Enterprise</b></p>
+		// 			<p>Admin's score: <span class="good">good</span></p>
+		// 			<p>Lector: <b>David Smith</b></p>
+		// 	</div>
+		// 	<div class="user__courses--course admin">
+		// 			<p>Title: <b>QA</b></p>
+		// 			<p>Admin's score: <span class="very-good">very-good</span></p>
+		// 			<p>Lector: <b>Emilie Smith</b></p>
+		// 	</div>
+		// </div>
+	}
+}
+
+class Lector extends User{
+  constructor(obj){
+      super(obj);
   }
 
   renderCourses(){}
 }
 
-const USER_ROLE = {
-  Student: users => new Student(User),
-  Lector: users => new Lector(User),
-  Admin: users => new Admin(User)
+const USER_ROLES = {
+  student: user => new Student(user),
+	admin: user => new Admin(user),
+  lector: user => new Lector(user)
+
 }
 
-let usersDiv = users
-    .map(user => USER_ROLE[user.role] ? USER_ROLE[user.role](user) : new User(user))
+let usersClass = users
+    .map(user => USER_ROLES[user.role] ? USER_ROLES[user.role](user) : new User(user))
     .map(user => user.render())
     .join(``);
 
-document.write(`<div class="users">${usersDiv}</div>`)
+document.write(`<div class="users">${usersClass}</div>`)
