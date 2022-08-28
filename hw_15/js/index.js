@@ -129,7 +129,7 @@ class User{
 						</p>`
 					).join(``);
 				return `<div class="user__courses">${courses}</div>`;
-			}
+	}
 
 	getMark = mark => {
 		for(let key in gradation){
@@ -152,23 +152,20 @@ class Admin extends User{
   }
 
   renderCourses(){
-		return `<div class="user__courses admin--info">
-                <div class="user__courses--course admin">
-                    <p>Title: <b>Front-end Pro</b></p>
-                    <p>Admin's score: <span class="satisfactory">satisfactory</span></p>
-                    <p>Lector: <b>Leo Smith</b></p>
-                </div>
-                <div class="user__courses--course admin">
-                    <p>Title: <b>Java Enterprise</b></p>
-                    <p>Admin's score: <span class="good">good</span></p>
-                    <p>Lector: <b>David Smith</b></p>
-                </div>
-                <div class="user__courses--course admin">
-                    <p>Title: <b>QA</b></p>
-                    <p>Admin's score: <span class="very-good">very-good</span></p>
-                    <p>Lector: <b>Emilie Smith</b></p>
-                </div>
-            </div>`
+		let courses = this.courses.map(course => 
+			`<p class="user__courses--course admin">
+				${course.title}
+				<span class="${this.getMark(course.score)}">${this.getMark(course.score)}</span>
+			</p>`
+		).join(``);
+	return `<div class="user__courses">${courses}</div>`;
+	}
+}
+getScore = score => {
+	for(let key in gradation){
+		if(score <= key){
+			return gradation[key];
+		}
 	}
 }
 
@@ -178,18 +175,13 @@ class Lector extends User{
   }
 
   renderCourses(){
-		return `            <div class="user__courses admin--info">
-                <div class="user__courses--course lector">
-                    <p>Title: <b>Front-end Pro</b></p>
-                    <p>Lector's score: <span class="very-good">very-good</span></p>
-                    <p>Average student's score: <span class="very-good">very-good</span></p>
-                </div>
-                <div class="user__courses--course lector">
-                    <p>Title: <b>Java Enterprise</b></p>
-                    <p>Lector's score: <span class="very-good">very-good</span></p>
-                    <p>Average student's score: <span class="very-good">very-good</span></p>
-                </div>
-            </div>`
+		let courses = this.courses.map(course => 
+			`<p class="user__courses--course lector">
+				${course.title}
+				<span class="${this.getMark(course.score)}">${this.getMark(course.score)}</span>
+			</p>`
+		).join(``);
+	return `<div class="user__courses">${courses}</div>`;
 	}
 }
 
