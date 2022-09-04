@@ -120,24 +120,24 @@ const COFFEE_TYPES = {
         }
     ]
 }
-  
+
 class Coffee{
     constructor (obj){
       Object.assign(this, obj);
       console.log(this.ingredients)
     }
-
-    makeCoffee(){
-        for(let key in this.ingredients){
-        return `<div class="cup">
-            <div class="coffee">
-                <div class="coffee__ingredients">
-                    <p style="height: ${this.ingredients[key]}" class="ingredient ${key}">${key}</p>
-                </div>
-            </div>
-            <p class="coffee__title">${this.title}</p>
-        </div>`
-        }
+    makeCoffee() {
+        const DIVs = Object.keys(this.ingredients)
+            .map(key => `<p style="height: ${this.ingredients[key]}" class="ingredient ${key}">${key}</p>`)
+            .join(``);
+        return `<section class="cups">
+                    <div class="cup">
+                        <div class="coffee">
+                            <div class="coffee__ingredients">${DIVs}</div>
+                        </div>
+                        <p class="coffee__title">${this.title}</p>
+                    </div>
+                </section>`
     }
 }
 
@@ -150,40 +150,22 @@ let renderDefaultCoffee = new Coffee(
             "whipped cream": 40
         }
     }
-)
-  
+).makeCoffee();
+document.write(renderDefaultCoffee)
+
+let Americano = new Coffee(
+    {
+        title: `Americano`,
+        ingredients: {
+          espresso: 40,
+          water: 60
+        }
+     }
+).makeCoffee();
+document.write(Americano)
+
 class Espresso extends Coffee{
     constructor(Coffee){
       super(Coffee);
     }
 }
-class EspressoMilk extends Coffee{
-    constructor(Coffee){
-      super(Coffee);
-    }
-}
-class Alcoholic extends Coffee{
-    constructor(Coffee){
-      super(Coffee);
-    }
-}
-class Dessert extends Coffee{
-    constructor(Coffee){
-      super(Coffee);
-    }
-}
-
-const COFFEE_TYPE = {
-    Espresso: Coffee => new Espresso(Coffee),
-    EspressoMilk: Coffee => new EspressoMilk(Coffee),
-    Alcoholic: Coffee => new Alcoholic(Coffee),
-    Dessert: Coffee => new Dessert(Coffee)
-}
-
-COFFEE_TYPES
-    .map(Coffee => COFFEE_TYPE[Espresso] ? COFFEE_TYPE[Espresso](Coffee) : new Coffee(Coffee))
-    .map(Coffee => Coffee.makeCoffee())
-    .join(``);
-
-  document.write(`<section class="cups">${renderDefaultCoffee.makeCoffee()}</section>`)
-  console.log(renderDefaultCoffee.makeCoffee())
