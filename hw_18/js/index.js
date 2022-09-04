@@ -28,10 +28,9 @@ const changeColor = setInterval(() => {
   block.style = `background-color: rgb(${colorInterval}, ${colorInterval + 10}, ${colorInterval + 40})`;
 }, 5000);
 
-let viewHeight = clientHeight - 100;
-let viewWidth = clientWidth - 100;
-
 const movingBlock = setInterval(() => {
+  let viewHeight = clientHeight - 100;
+  let viewWidth = clientWidth - 100;
   let blockInterval = getRandomIntInclusive(0, viewHeight);
   if((parseInt(block.style.left) + blockInterval) < viewHeight){
     block.style.left = (parseInt(block.style.left) + blockInterval) + `px`;
