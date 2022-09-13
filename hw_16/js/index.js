@@ -31,14 +31,14 @@ const COFFEE_TYPES = {
             title: `Macchiato`,
             ingredients: {
                 espresso: 20,
-                "milk-foam": 10
+                "milk foam": 10
             }
         },
         {
             title: `Flat White`,
             ingredients: {
                 espresso: 55,
-                "milk-foam": 45
+                "milk foam": 45
             }
         },
         {
@@ -46,7 +46,7 @@ const COFFEE_TYPES = {
             ingredients: {
                 espresso: 20,
                 milk: 20,
-                "milk-foam": 15
+                "milk foam": 15
             }
         },
         {
@@ -54,16 +54,16 @@ const COFFEE_TYPES = {
             ingredients: {
                 espresso: 20,
                 milk: 20,
-                "milk-foam": 20
+                "milk foam": 20
             }
         },
         {
             title: `Mocha`,
             ingredients: {
-                "chocolate-syrop": 15,
+                "chocolate syrop": 15,
                 espresso: 15,
                 milk: 18,
-                "milk-foam": 15
+                "milk foam": 15
             }
         }
     ],
@@ -73,7 +73,7 @@ const COFFEE_TYPES = {
             ingredients: {
                 espresso: 50,
                 whiskey: 10,
-                "whipped-cream": 40
+                "whipped cream": 40
             }
         },
         {
@@ -87,8 +87,8 @@ const COFFEE_TYPES = {
             title: `Baileys Hot Coffee`,
             ingredients: {
                 espresso: 30,
-                "warm-milk": 20,
-                "baileys-irish-cream": 30
+                "warm milk": 20,
+                "baileys irish cream": 30
             }
         }
     ],
@@ -97,8 +97,8 @@ const COFFEE_TYPES = {
             title: `Affogato`,
             ingredients: {
                 espresso: 25,
-                "ice-cream": 20,
-                "whipped-cream": 10,
+                "ice cream": 20,
+                "whipped cream": 10,
                 chocolate: 10
             }
         },
@@ -114,8 +114,8 @@ const COFFEE_TYPES = {
             title: `Glace`,
             ingredients: {
                 espresso: 50,
-                "grated-chocolate": 10,
-                "ice-cream": 30
+                "grated chocolate": 10,
+                "ice cream": 30
             }
         }
     ]
@@ -158,6 +158,7 @@ class Espresso extends Coffee{
         return classes;
     }
 }
+
 class EspressoMilk extends Coffee{
     constructor(coffee){
         super(coffee);
@@ -169,6 +170,7 @@ class EspressoMilk extends Coffee{
         return classes;
     }
 }
+
 class Alcoholic extends Coffee{
     constructor(coffee){
         super(coffee);
@@ -180,6 +182,7 @@ class Alcoholic extends Coffee{
         return classes;
     }
 }
+
 class Dessert extends Coffee{
     constructor(coffee){
         super(coffee);
