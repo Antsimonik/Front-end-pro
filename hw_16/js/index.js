@@ -31,14 +31,14 @@ const COFFEE_TYPES = {
             title: `Macchiato`,
             ingredients: {
                 espresso: 20,
-                "milk-foam": 10
+                "milk foam": 10
             }
         },
         {
             title: `Flat White`,
             ingredients: {
                 espresso: 55,
-                "milk-foam": 45
+                "milk foam": 45
             }
         },
         {
@@ -46,7 +46,7 @@ const COFFEE_TYPES = {
             ingredients: {
                 espresso: 20,
                 milk: 20,
-                "milk-foam": 15
+                "milk foam": 15
             }
         },
         {
@@ -54,16 +54,16 @@ const COFFEE_TYPES = {
             ingredients: {
                 espresso: 20,
                 milk: 20,
-                "milk-foam": 20
+                "milk foam": 20
             }
         },
         {
             title: `Mocha`,
             ingredients: {
-                "chocolate-syrop": 15,
+                "chocolate syrop": 15,
                 espresso: 15,
                 milk: 18,
-                "milk-foam": 15
+                "milk foam": 15
             }
         }
     ],
@@ -73,7 +73,7 @@ const COFFEE_TYPES = {
             ingredients: {
                 espresso: 50,
                 whiskey: 10,
-                "whipped-cream": 40
+                "whipped cream": 40
             }
         },
         {
@@ -87,8 +87,8 @@ const COFFEE_TYPES = {
             title: `Baileys Hot Coffee`,
             ingredients: {
                 espresso: 30,
-                "warm-milk": 20,
-                "baileys-irish-cream": 30
+                "warm milk": 20,
+                "baileys irish cream": 30
             }
         }
     ],
@@ -97,8 +97,8 @@ const COFFEE_TYPES = {
             title: `Affogato`,
             ingredients: {
                 espresso: 25,
-                "ice-cream": 20,
-                "whipped-cream": 10,
+                "ice cream": 20,
+                "whipped cream": 10,
                 chocolate: 10
             }
         },
@@ -114,80 +114,110 @@ const COFFEE_TYPES = {
             title: `Glace`,
             ingredients: {
                 espresso: 50,
-                "grated-chocolate": 10,
-                "ice-cream": 30
+                "grated chocolate": 10,
+                "ice cream": 30
             }
         }
     ]
 }
 
 class Coffee{
-    constructor (obj){
-      Object.assign(this, obj);
-      console.log(this.ingredients)
+    constructor(coffee){
+        Object.assign(this, coffee);
     }
 
-    makeCoffee() {
-        const DIVs = Object.keys(this.ingredients)
-            .map(key => `<p style="height: ${this.ingredients[key]}%" class="ingredient ${key}">${key}</p>`)
-            .join(``);
+    makeCoffee(){
         return `<div class="cup">
-                    <div class="${this.setClass().join(` `)}">
-                        <div class="coffee__ingredients">${DIVs}</div>
-                    </div>
-                    <p class="coffee__title">${this.title}</p>
-                </div>`
+            <div class="${this.getCupClasses().join(` `)}">
+                <div class="coffee__ingredients">${this.setIngredients()}</div>
+            </div>
+            <p class="coffee__title">${this.title}</p>
+        </div>`;
     }
 
-    setClass(){
+    getCupClasses(){
         return [`coffee`];
+    }
+
+    setIngredients(){
+        return Object
+            .keys(this.ingredients)
+            .map(key => `<p style="height: ${this.ingredients[key]}%" class="ingredient ${key.replaceAll(` `,`__`)}">${key}</p>`)
+            .join(``);
     }
 }
 
 class Espresso extends Coffee{
-    constructor(obj){
-        super(obj);
+    constructor(coffee){
+        super(coffee);
     }
 
-    setClass(){
-        let classes = super.setClass();
+    getCupClasses(){
+        let classes = super.getCupClasses();
         classes.push(`coffee--espresso`);
         return classes;
     }
 }
+
 class EspressoMilk extends Coffee{
-    constructor(obj){
-        super(obj);
+    constructor(coffee){
+        super(coffee);
     }
 
-    setClass(){
-        let classes = super.setClass();
+    getCupClasses(){
+        let classes = super.getCupClasses();
         classes.push(`coffee--espressoMilk`);
         return classes;
     }
 }
+
 class Alcoholic extends Coffee{
-    constructor(obj){
-        super(obj);
+    constructor(coffee){
+        super(coffee);
     }
 
-    setClass(){
-        let classes = super.setClass();
+    getCupClasses(){
+        let classes = super.getCupClasses();
         classes.push(`coffee--alcoholic`);
         return classes;
     }
 }
+
 class Dessert extends Coffee{
-    constructor(obj){
-        super(obj);
+    constructor(coffee){
+        super(coffee);
     }
 
-    setClass(){
-        let classes = super.setClass();
+    getCupClasses(){
+        let classes = super.getCupClasses();
         classes.push(`coffee--dessert`);
         return classes;
     }
 }
+
+const COFFEE_CLASSES = {
+    Espresso: coffee => new Espresso(coffee),
+    EspressoMilk: coffee => new EspressoMilk(coffee),
+    Alcoholic: coffee => new Alcoholic(coffee),
+    Dessert: coffee => new Dessert(coffee),
+}
+
+let allCoffee = Object
+    .keys(COFFEE_TYPES)
+    .map(type => {
+        let currentType = COFFEE_TYPES[type];
+        return currentType
+            .map(coffee => {
+                return COFFEE_CLASSES[type] ? COFFEE_CLASSES[type](coffee) : new Coffee(coffee)
+            })
+    })
+    .map(coffee => {
+        console.log(coffee);
+        return coffee;
+    })
+    .reduce((finalArr, arr) => finalArr.concat(arr), [])
+    .map(coffee => coffee.makeCoffee())
+    .join(``);
 
 let defaultCoffee = new Coffee(
     {
@@ -198,32 +228,9 @@ let defaultCoffee = new Coffee(
             "whipped cream": 40
         }
     }
-)
-
-let EspressoCoffee = COFFEE_TYPES.Espresso
-    .map(Coffee => new Espresso(Coffee))
-    .map(Coffee => Coffee.makeCoffee())
-    .join(``);
-
-let EspressoMilkCoffee = COFFEE_TYPES.EspressoMilk
-    .map(Coffee => new EspressoMilk(Coffee))
-    .map(Coffee => Coffee.makeCoffee())
-    .join(``);
-
-let AlcoholicCoffee = COFFEE_TYPES.Alcoholic
-    .map(Coffee => new Alcoholic(Coffee))
-    .map(Coffee => Coffee.makeCoffee())
-    .join(``);
-
-let DessertCoffee = COFFEE_TYPES.Dessert
-    .map(Coffee => new Dessert(Coffee))
-    .map(Coffee => Coffee.makeCoffee())
-    .join(``);
+);
 
 document.write(`<section class="cups">
     ${defaultCoffee.makeCoffee()}
-    ${EspressoCoffee}
-    ${EspressoMilkCoffee}
-    ${AlcoholicCoffee}
-    ${DessertCoffee}
-    </section>`)
+    ${allCoffee}
+</section>`);
