@@ -7,13 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
   <title>Document</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .block {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      background-image: url(yoda/yoda.gif);
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s;
+      transform-origin: 50% 100%;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div id="block" class="block">
-    <p id="block-bems" class="block-bems">"БЕМС"</p>
-  </div>
+  <div id="block" class="block"></div>
 
   <script src="./js/index.js"></script>
 </body>
