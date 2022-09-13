@@ -225,7 +225,7 @@ let defaultCoffee = new Coffee(
             "whipped cream": 40
         }
     }
-);
+)
 
 document.write(`<section class="cups">
     ${defaultCoffee.makeCoffee()}
