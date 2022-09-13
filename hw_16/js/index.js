@@ -230,5 +230,4 @@ let defaultCoffee = new Coffee(
 document.write(`<section class="cups">
     ${defaultCoffee.makeCoffee()}
     ${allCoffee}
-    ${allCoffee}
 </section>`);
