@@ -216,16 +216,7 @@ let allCoffee = Object
     .map(coffee => coffee.makeCoffee())
     .join(``);
 
-let defaultCoffee = new Coffee(
-    {
-        title: `Default Coffee`,
-        ingredients: {
-            espresso: 50,
-            whiskey: 10,
-            "whipped cream": 40
-        }
-    }
-);
+
 
 document.write(`<section class="cups">
     ${defaultCoffee.makeCoffee()}
