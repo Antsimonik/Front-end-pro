@@ -29,20 +29,14 @@ const bankData = {
     }
 }
 
-function getMoney () {
-  return myPromise;
-}
-
-let myPromise = new Promise(
-  function(resolve, reject){
-    let viewBalance = confirm (`Подивитися баланс карті?`);
+const getMoney = () => new Promise((resolve, reject) => {
+    const viewBalance = confirm (`Подивитися баланс карті?`);
     viewBalance ? resolve() : reject();
-  }
-);
+  });
 
-myPromise
+getMoney()
   .then(
-    function(){
+    () => {
       let chooseCurrency,
           avaibleUserCurrency = Object.keys(userData),
           sommeUserCurrency;
@@ -59,7 +53,7 @@ myPromise
   )
 
   .catch(
-    function(){
+    () => {
       let avaibleUserCurrency = Object.keys(userData);
       let avaibleBankCurrency = Object
           .keys(bankData)
@@ -91,7 +85,7 @@ myPromise
   )
 
   .finally(
-    function(){
+    () => {
       console.log(`Дякую, гарного дня 😊`);
     }
 
