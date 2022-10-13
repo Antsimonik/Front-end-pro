@@ -1,5 +1,4 @@
-const API = `https://633357a1573c03ab0b5c6efb.mockapi.io/api`;
-const API2 = `https://61c9d37520ac1c0017ed8eac.mockapi.io`
+const API = `https://61c9d37520ac1c0017ed8eac.mockapi.io`
 
 const controller = async (url, method=`GET`, obj) => {
   let options = {
@@ -23,29 +22,17 @@ const createFavouriteHero = document.querySelector(`#createFavouriteHero`);
 const createHero = document.querySelector(`#createHero`);
 const heroTable = document.querySelector(`#heroTable`);
 const taskTableHero = document.querySelector(`#taskTableHero`);
+const heroTableTbody = document.querySelector(`#heroTable tbody`);
 
-// renderComixHero
-const renderHeroAll = async () => {
-  let users = await controller(API2+`/heroes`);
-
-    users
-      .forEach(hero => renderHero(hero));
-}
-renderHeroAll();
-// renderComixHero
-
-// renderComixHero
 const renderComixHero = async () => {
-  let users = await controller(API2+`/universes`);
+  let users = await controller(API+`/universes`);
 
   createComixHero.innerHTML = users
       .map(item => `<option value="${item.name}">${item.name}</option>`)
       .join(``);
 }
 renderComixHero();
-// renderComixHero
 
-// createHero
 createHero.addEventListener(`submit`, async e => {
   e.preventDefault();
 
@@ -53,10 +40,10 @@ createHero.addEventListener(`submit`, async e => {
       let newHero = {
           name: createNameHero.value,
           comics: createComixHero.value,
-          favourite: createFavouriteHero.value,
+          favourite: createFavouriteHero.checked,
       };
 
-      let storageHero = await controller(API2+`/heroes`);
+      let storageHero = await controller(API+`/heroes`);
       let nameAlreadyBusy = storageHero.find(hero => hero.name === createNameHero.value);
 
       if(nameAlreadyBusy){
@@ -64,54 +51,49 @@ createHero.addEventListener(`submit`, async e => {
           return;
       }
 
-      let addedHero = await controller(API2+`/heroes`, `POST`, newHero);
+      let addedHero = await controller(API+`/heroes`, `POST`, newHero);
       renderHero(addedHero);
       console.log(addedHero)
   } catch(err){
       console.log(`In catch:`, err);
   }
 })
-// createHero
 
-// renderHero
 const renderHero = hero => {
-
   let tr = document.createElement(`tr`);
   tr.innerHTML = `<td>${hero.name}</td>
-  <td>${hero.comics}</td>
-  <td>${hero.favourite}</td>`;
+  <td>${hero.comics}</td>`;
+
+  let tdFav = document.createElement(`td`);
+  let favInput = document.createElement(`input`);
+  favInput.type = `checkbox`;
+  favInput.checked = hero.favourite;
+  favInput.addEventListener(`change`, async e => {
+    await controller(API+`/heroes/${hero.id}`, `PUT`, {favourite: e.target.checked});
+  })
+
+  tdFav.append(favInput);
 
   let tdBtn = document.createElement(`td`);
   let heroBtn = document.createElement(`button`);
   heroBtn.innerHTML = `DELETE`;
   heroBtn.addEventListener(`click`, async () => {
+    let deletedHero = await controller(API+`/heroes/${hero.id}`, `DELETE`);
+    console.log(deletedHero);
     tr.remove();
-    let deletedHero = await controller(API2+`/heroes/${hero.id}`, `DELETE`);
-    console.log(deletedHero)
   })
 
   tdBtn.append(heroBtn);
 
-  tr.append(tdBtn);
+  tr.append(tdFav, tdBtn);
 
-  heroTable.append(tr);
+  heroTableTbody.append(tr);
 }
-// renderHero
 
-// renderStorageHero
 const renderStorageHero = async () => {
-  let heros = await controller(API2+`/heroes`);
+  let heros = await controller(API+`/heroes`);
   heros
       .forEach(hero => renderHero(hero));
 }
 renderStorageHero();
-// renderStorageHero
 
-// renderHeros
-const renderHeros = async () => {
-  let heros = await controller(API2+`/heroes`);
-  heros
-      .forEach(hero => renderHero(hero));
-}
-renderStorageHero();
-// renderHeros
