@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 
 function App(props) {
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="lg">
       <BrowserRouter>
         <Routes>
           <Route path={"/"} element={<Dashboard />} />
