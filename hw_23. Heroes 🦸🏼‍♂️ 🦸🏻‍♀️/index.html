@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Tasks 🥳🥵</title>
+</head>
+
+<body>
+  <form id="createHero">
+    <fieldset class="hero__fieldset">
+      <legend>Create task</legend>
+      <label>
+        Name: <input type="text" id="createNameHero" value="Batman">
+      </label>
+      <label>
+        Comics (DC, Marvel): <select id="createComixHero"></select>
+      </label>
+      <label>
+        Favourite (чекбокс): <input type="checkbox" id="createFavouriteHero"></input>
+      </label>
+      <button>Actions</button>
+    </fieldset>
+  </form>
+  <table id="heroTable" class="hero__table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Comics (DC, Marvel)</th>
+        <th>Favourite (чекбокс)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="taskTableHero">
+    </tbody>
+  </table>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+ul{
+  margin: 0;
+  // list-style: none;
+  list-style-type: none;
+}
+
+button{
+  margin: 0 5px;
+  vertical-align: top;
+}
+
+// li{
+//   width: fit-content;
+// }
+
+.hero{
+  display: flex;
+  justify-content: space-around;
+
+    .wrapper{
+      border: 1px solid black;
+      padding: 5px;
+
+      .completed{
+        background: green;
+        color: white;
+        padding: 2px;
+        margin-bottom: 5px;
+      }
+
+      .inprogress{
+        background: red;
+        padding: 2px;
+        margin-bottom: 5px;
+      }
+
+      .inprogress:nth-last-child(1){
+        margin-bottom: 0;
+      }
+    }
+}
+

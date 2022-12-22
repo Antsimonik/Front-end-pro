@@ -52,13 +52,7 @@ const renderJoke = joke => {
     // console.log(joke.id)
     li.remove();
 
-      select.addEventListener(`change`, e => {
-        let selectedOption = e.target.value; // select.value;
-    
-        let option = select.querySelector(`option[value="${selectedOption}"]`);
-
-        option.setAttribute(`disabled`, false);
-    });
+    select.querySelector(`option[value="${joke.categories[0]}"]`).removeAttribute(`disabled`);
   })
 
   li.append(removeBtn);
