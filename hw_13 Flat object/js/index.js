@@ -9,25 +9,20 @@ const obj = {
       k: 23,
       p: 13
   },
-  convert() {
-    let newObj = {};
-  
-    for(let key in this){
-      let objKey = this[key]
-  
-      if(typeof objKey === `object`) {
-  
-        for(let key in objKey){
-          newObj[key] = objKey[key];
-        }
-  
-      } else if (typeof objKey != `object`) {
-        newObj[key] = objKey
-      }
-    }
-    return newObj;
-  }
 };
 
-console.log (obj.convert())
+const convert = list => {
+  let newObj = {};
+
+  for (let key in list) {
+      if(typeof list[key] === 'object'){
+          Object.assign(newObj, convert(list[key]))
+      } else{
+          newObj[key] = list[key];
+      }
+  }
+  return newObj;
+}
+
+console.log (convert(obj))
 
