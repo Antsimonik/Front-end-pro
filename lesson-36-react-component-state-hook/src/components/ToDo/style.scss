@@ -1,0 +1,33 @@
+li{
+  margin-bottom: 3px;
+  padding: 3px;
+
+  // &:last-child{
+  //   margin-bottom: 0;
+  // }
+
+  &.completed{
+    background: rgb(32, 121, 32);
+  }
+  
+  &.progress{
+    background: rgb(229, 179, 84);
+  }
+
+  button{
+    margin-left: 10px;
+    margin-bottom: 3px;
+  }
+}
+
+form {
+  margin: 10px;
+
+  button{
+    margin-left: 3px;
+  }
+}
+
+select {
+  margin: 10px
+}
