@@ -1,0 +1,50 @@
+@import "./helpers/mixins";
+@import "./helpers/normalize";
+@import "../fonts/font.scss";
+@import "./scss-division/header";
+@import "./scss-division/main";
+@import "./scss-division/footer";
+
+body {
+  font-family: Montserrat;
+  color: rgb(155, 89, 89)
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+h4 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+img {
+  margin: 0;
+}
+
+hr {
+  margin: 0;
+  border: 1px solid rrgb(150 185 175);
+}
+
+p {
+  margin: 0;
+}
+
+
+
