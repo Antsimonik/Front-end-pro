@@ -97,7 +97,7 @@
 
       a {
         color: rgb(47 180 166 / 93%);
-        @include font(700, 18px, 17px, 1px);
+        @include font(700, 14px, 17px, 1px);
       }
 
       a:not(:only-of-type) {
