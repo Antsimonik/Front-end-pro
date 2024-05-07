@@ -3,11 +3,11 @@ import "./CartItems.scss";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
 
-function CartItems(props) {
+function CartItems() {
   const { all_product, cartItems, removeFromCart } = useContext(ShopContext);
 
   return (
-    <div cartitems>
+    <div className="cartitems">
       <div className="cartitems-format-main">
         <p>Products</p>
         <p>Title</p>
@@ -29,13 +29,21 @@ function CartItems(props) {
                 />
                 <p>{e.name}</p>
                 <p>${e.new_price}</p>
-                <button className="cartitems-format-quantity"></button>
-                <p></p>
-                <img src={remove_icon} onClick={removeFromCart()} alt="" />
+                <button className="cartitems-format-quantity">
+                  {cartItems[e.id]}
+                </button>
+                <p>{e.new_price * cartItems[e.id]}</p>
+                <img
+                  onClick={() => removeFromCart(e.id)}
+                  src={remove_icon}
+                  alt="remove"
+                />
               </div>
               <hr />
             </div>
           );
+        } else {
+          return null;
         }
       })}
     </div>
