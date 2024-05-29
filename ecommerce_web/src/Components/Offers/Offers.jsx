@@ -8,6 +8,7 @@ function Offers(props) {
       <div className="offers-left">
         <h2>Exclusive</h2>
         <h2>Offers For You</h2>
+        <p>Only on best sellers products</p>
         <button>Check Now</button>
       </div>
       <div className="offers-right">

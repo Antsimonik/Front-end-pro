@@ -3,8 +3,8 @@ import "./NewsLetter.scss";
 
 function NewsLetter(props) {
   return (
-    <div className="news-letter">
-      <h2>Get Exclusive Offers On You Email</h2>
+    <div className="newsletter">
+      <h1>Get Exclusive Offers On You Email</h1>
       <p>Subscribe tu our newsletter and stay updated</p>
       <div>
         <input type="email" placeholder="you E-Mail id" />

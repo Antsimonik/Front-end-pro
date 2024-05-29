@@ -1,5 +1,9 @@
 .item {
-  width: 350px;
+  width: 280px;
+
+  img {
+    width: 280px;
+  }
 
   p {
     margin: 6px 0;
@@ -27,3 +31,8 @@
     transition: 0.6s;
   }
 }
+
+@import './size/work_1920.scss';
+@import './size/work_1024.scss';
+@import './size/table_800.scss';
+@import './size/mobile_500.scss';

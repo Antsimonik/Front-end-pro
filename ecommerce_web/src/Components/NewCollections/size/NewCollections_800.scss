@@ -1,0 +1,17 @@
+@media (max-width: 800px) {
+  .new-collections {
+    gap: 6px;
+
+    h1 {
+      font-size: 20px;
+    }
+
+    hr {
+      width: 100px;
+    }
+  }
+
+  .collections {
+    gap: 5px;
+  }
+}

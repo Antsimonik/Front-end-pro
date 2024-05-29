@@ -6,7 +6,7 @@ import Item from "../Item/Item";
 function NewCollections(props) {
   return (
     <div className="new-collections">
-      <h2>NEW COLLECTIONS</h2>
+      <h1>NEW COLLECTIONS</h1>
       <hr />
       <div className="collections">
         {new_collections.map((item, i) => {

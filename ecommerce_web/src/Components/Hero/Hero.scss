@@ -1,5 +1,5 @@
 .hero {
-  height: 100vh;
+  // height: 100vh;
   background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
   display: flex;
 
@@ -61,3 +61,8 @@
     justify-content: center;
   }
 }
+
+@import './size/Hero_1280px.scss';
+@import './size/Hero_1024px.scss';
+@import './size/Hero_800px.scss';
+@import './size/Hero_500px.scss';
