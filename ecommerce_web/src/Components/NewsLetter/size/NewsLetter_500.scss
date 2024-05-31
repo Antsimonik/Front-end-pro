@@ -1,0 +1,25 @@
+@media(max-width: 500px) {
+  .newsletter {
+    width: 100%;
+    padding: 20px 0;
+    gap: 15px;
+
+    h1 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 13px;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    &-email {
+      width: 290px;
+
+      input {
+        width: 130px;
+      }
+    }
+  }
+}

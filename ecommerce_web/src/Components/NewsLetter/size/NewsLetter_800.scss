@@ -1,0 +1,31 @@
+@media(max-width: 800px) {
+  .newsletter {
+    margin-bottom: 30px;
+    padding-top: 20px;
+    height: 25vh;
+
+    h1 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    &-email {
+      width: 400px;
+      height: 40px;
+
+      input {
+        width: 200px;
+        font-size: 13px;
+      }
+
+      button {
+        width: 100px;
+        height: 40px;
+        font-size: 13px;
+      }
+    }
+  }
+}

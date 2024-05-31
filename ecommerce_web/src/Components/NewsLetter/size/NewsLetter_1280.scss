@@ -1,7 +1,30 @@
 @media(max-width: 1280px) {
   .newsletter {
-    padding: 0 80px;
-    margin-bottom: 120px;
+    height: 30vh;
+    padding: 30px 80px;
+    margin-bottom: 80px;
     gap: 20px;
+
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    &-email {
+      width: 600px;
+      height: 60px;
+
+      input {
+        width: 400px;
+      }
+
+      button {
+        width: 160px;
+        height: 60px;
+      }
+    }
   }
 }
