@@ -9,7 +9,7 @@ function CartItems() {
 
   return (
     <div className="cartitems">
-      <div className="cartitems-format-main">
+      <div className="cartitems-format-main hide">
         <p>Products</p>
         <p>Title</p>
         <p>Price</p>
