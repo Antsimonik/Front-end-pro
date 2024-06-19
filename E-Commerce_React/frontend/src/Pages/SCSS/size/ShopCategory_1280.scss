@@ -1,0 +1,41 @@
+@media (max-width: 1280px){
+  .shop{
+    &-category{
+      &-banner {
+        margin: 20px auto;
+        width: 90%;
+      }
+
+      &-indexSort{
+        width: 90%;
+        margin: auto;
+
+        &-sort {
+          padding: 5px 10px;
+          font-size: 12px;
+        }
+
+        p {
+          font-size: 12px;
+        }
+      }
+
+      &-products {
+        width: 90%;
+        margin: 10px auto;
+        row-gap: 40px;
+
+        .item {
+          margin: auto;
+        }
+      }
+
+      &-loadmore {
+        margin: 100px auto;
+        width: 200px;
+        height: 60px;
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@media(max-width:800px){
+  .loginSignup {
+    &-container {
+      padding: 20px 30px;
+
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        height: 50px;
+        font-size: 16px;
+      }
+    }
+
+    &-fields {
+      margin-top: 20px;
+
+      input {
+        height: 50px;
+      }
+    }
+  }
+}
