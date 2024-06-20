@@ -1,0 +1,13 @@
+@media (max-width: 800px) {
+  .navbar {
+    padding: 15px 30px;
+
+    &-logo {
+      width: 150px;
+    }
+
+    &-profile {
+      width: 30px;
+    }
+  }
+}
