@@ -1,0 +1,23 @@
+@media (max-width: 800px) {
+  .list {
+    &-product {
+      box-sizing: border-box;
+      width: 95%;
+      height: 100%;
+      padding: 10px 30px;
+      margin: 20px auto;
+
+      &-format {
+        &-main {
+          padding: 15px 0;
+          color: #454545;
+          font-size: 12px;
+
+          &-icon {
+            height: 60px;
+          }
+        }
+      }
+    }
+  }
+}

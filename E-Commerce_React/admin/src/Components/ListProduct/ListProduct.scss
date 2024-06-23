@@ -36,5 +36,11 @@
         }
       }
     }
+
+    &-allproducts{
+      overflow-y: auto;
+    }
   }
 }
+
+@import './size/ListProduct_800';
