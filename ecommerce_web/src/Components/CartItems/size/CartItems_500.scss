@@ -1,0 +1,15 @@
+@media (max-width: 500px) {
+  .hide {
+    display: none;
+  }
+  .cartitems {
+    &-format {
+      display: grid;
+
+      &-main {
+        grid-template-columns: 0.5fr 3fr 0.5fr;
+        gap: 10px;
+      }
+    }
+  }
+}

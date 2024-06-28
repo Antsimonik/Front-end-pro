@@ -1,0 +1,37 @@
+@media (max-width: 800px){
+  .hero {
+    &-left {
+      padding-left: 30px;
+
+      h2 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 40px;
+      }
+    }
+
+    &-hand {
+      &-icon {
+        img {
+          width: 50px;
+        }
+      }
+    }
+
+    &-latest {
+      &-btn {
+        width: 175px;
+        height: 40px;
+        font-size: 13px;
+      }
+    }
+
+    &-right {
+      img {
+        width: 300px;
+      }
+    }
+  }
+}

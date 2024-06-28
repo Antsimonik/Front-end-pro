@@ -1,0 +1,19 @@
+@media (max-width: 1024px) {
+  .relatedProducts {
+    height: 45vh;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    hr {
+      width: 120px;
+      height: 3px;
+    }
+
+    &-item {
+      gap: 15px;
+      margin-top: 20px;
+    }
+  }
+}

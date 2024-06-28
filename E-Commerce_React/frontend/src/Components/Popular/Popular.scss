@@ -1,0 +1,31 @@
+.popular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 100px;
+
+  h1 {
+    color: #171717;
+    font-size: 50px;
+    font-weight: 600;
+  }
+
+  hr {
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+  }
+
+  &-item {
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+  }
+}
+
+@import "./size/Popular_1280";
+@import "./size/Popular_1024";
+@import "./size/Popular_800";
+@import "./size/Popular_500";

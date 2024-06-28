@@ -1,0 +1,28 @@
+@media ( max-width: 800px) {
+  .offers {
+    margin-bottom: 60px;
+
+    &-left {
+      h2 {
+        font-size: 22px;
+      }    
+
+      p {
+        font-size: 13px;
+      }
+
+      button {
+        width: 140px;
+        height: 30px;
+        font-size: 12px;
+      }
+    }
+
+    &-right {
+
+      img {
+        width: 180px;
+      }
+    }
+  }
+}

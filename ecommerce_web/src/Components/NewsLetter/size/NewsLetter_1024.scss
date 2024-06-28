@@ -1,0 +1,29 @@
+@media(max-width: 1024px) {
+  .newsletter {
+    margin-bottom: 60px;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    &-email {
+      width: 500px;
+      height: 50px;
+
+      input {
+        width: 300px;
+        font-size: 14px;
+      }
+
+      button {
+        width: 120px;
+        height: 50px;
+        font-size: 14px;
+      }
+    }
+  }
+}

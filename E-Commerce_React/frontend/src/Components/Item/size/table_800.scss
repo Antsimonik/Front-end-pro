@@ -1,0 +1,16 @@
+@media (max-width: 800px) {
+  .item {
+    width: 120px;
+    font-size: 12px;
+
+    img {
+      width: 120px;
+    }
+
+    &-prices{
+      &-old {
+        font-size: 12px;
+      }
+    }
+  }
+}
