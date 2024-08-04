@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Cart } from 'src/app/models/cart.models';
+import { Cart, CartItem } from 'src/app/models/cart.models';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html' ,
-  styles: [
-  ]
+  templateUrl: './header.component.html' 
 })
 export class HeaderComponent {
   private _cart: Cart = {items: []};
@@ -24,6 +23,14 @@ export class HeaderComponent {
       .reduce((prev, current) => prev + current, 0);
   }
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
+
+  getTotal(items: Array<CartItem>): number {
+    return this.cartService.getTotal(items);
+  }
+
+  onClearCart() {
+    this.cartService.clearCart();
+  }
 
 }
