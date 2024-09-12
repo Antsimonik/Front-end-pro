@@ -1,13 +1,15 @@
+import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { Slot, Stack } from "expo-router";
-import { Fragment } from "react";
 
-const RootLayout = () => {
+export default function App() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
+    <View style={styles.container}>
+      <Text>Open</Text>
+      <StatusBar style="auto" />
+    </View>
   );
-};
+}
 
-export default RootLayout;
+const styles = StyleSheet.create({
+  container: {},
+});
