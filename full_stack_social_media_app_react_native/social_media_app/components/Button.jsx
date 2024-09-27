@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../constants/theme";
 import { hp } from "../helpers/common";
+import Loading from "./Loading";
 
 const Button = ({
   buttonStyle,
@@ -18,6 +19,14 @@ const Button = ({
     shadowRadius: 8,
     elevation: 4,
   };
+
+  if (loading) {
+    return (
+      <View style={[styles.button, buttonStyle, { backgroundColor: "white" }]}>
+        <Loading />
+      </View>
+    );
+  }
   return (
     <Pressable
       onPress={onPress}
