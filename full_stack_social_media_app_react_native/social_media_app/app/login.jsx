@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useRef, useState } from "react";
 import ScreenWrapper from "../components/ScreenWrapper";
 import { theme } from "../constants/theme";
@@ -8,14 +8,24 @@ import BackButton from "../components/BackButton";
 import { useRouter } from "expo-router";
 import { hp, wp } from "../helpers/common";
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 const Login = () => {
   const router = useRouter();
   const emailRef = useRef("");
+  const passwordRef = useRef("");
   const [loading, setLoading] = useState(false);
 
+  const onSubmit = async () => {
+    if (!emailRef.current || !passwordRef.current) {
+      Alert.alert("Login", "please fill all the fields!");
+      return;
+    }
+    // good to go
+  };
+
   return (
-    <ScreenWrapper>
+    <ScreenWrapper bg="white">
       <StatusBar style="dark" />
       <View style={styles.container}>
         <BackButton router={router} />
@@ -37,11 +47,33 @@ const Login = () => {
             onChangeText={(value) => (emailRef.current = value)}
           />
           <Input
-            icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
+            icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
             placeholder="Enter your password"
             secureTextEntry
-            onChangeText={(value) => (emailRef.current = value)}
+            onChangeText={(value) => (passwordRef.current = value)}
           />
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+
+          {/* button */}
+          <Button title={"Login"} loading={loading} onPress={onSubmit} />
+        </View>
+
+        {/* footer */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Don't have an account?</Text>
+          <Pressable onPress={() => router.push("signUp")}>
+            <Text
+              style={[
+                styles.footerText,
+                {
+                  color: theme.colors.primaryDark,
+                  fontWeight: theme.fonts.semibold,
+                },
+              ]}
+            >
+              Sign up
+            </Text>
+          </Pressable>
         </View>
       </View>
     </ScreenWrapper>
@@ -74,5 +106,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 5,
+  },
+  footerText: {
+    textAlign: "center",
+    color: theme.colors.text,
+    fontSize: hp(1.6),
   },
 });
