@@ -9,11 +9,13 @@ import { useRouter } from "expo-router";
 import { hp, wp } from "../helpers/common";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { supabase } from "../lib/supabase";
 
 const SignUp = () => {
   const router = useRouter();
   const emailRef = useRef("");
-  const nameRef = useRef("");
+  const firstNameRef = useRef("");
+  const secondNameRef = useRef("");
   const passwordRef = useRef("");
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +24,34 @@ const SignUp = () => {
       Alert.alert("Sign Up", "please fill all the fields!");
       return;
     }
-    // good to go
+
+    let firstName = firstNameRef.current.trim();
+    let secondName = secondNameRef.current.trim();
+    let email = emailRef.current.trim();
+    let password = passwordRef.current.trim();
+
+    setLoading(true);
+
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          firstName,
+          secondName,
+        },
+      },
+    });
+    setLoading(false);
+
+    console.log("session: ", session);
+    console.log("error: ", error);
+    if (error) {
+      Alert.alert("Sign up", error.message);
+    }
   };
 
   return (
@@ -44,8 +73,13 @@ const SignUp = () => {
           </Text>
           <Input
             icon={<Icon name="user" size={26} strokeWidth={1.6} />}
-            placeholder="Enter your name"
-            onChangeText={(value) => (nameRef.current = value)}
+            placeholder="Enter your first name"
+            onChangeText={(value) => (firstNameRef.current = value)}
+          />
+          <Input
+            icon={<Icon name="user" size={26} strokeWidth={1.6} />}
+            placeholder="Enter your second name"
+            onChangeText={(value) => (secondNameRef.current = value)}
           />
           <Input
             icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
