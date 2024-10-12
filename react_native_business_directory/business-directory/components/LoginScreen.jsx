@@ -1,9 +1,31 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import * as WebBrowser from "expo-web-browser";
 import { Colors } from "@/constants/Colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
+import { useOAuth } from "@clerk/clerk-expo";
 
+WebBrowser.maybeCompleteAuthSession();
 const LoginScreen = () => {
+  useWarmUpBrowser();
+
+  const { startOAuthFlow } = useOAuth({
+    strategy: "oauth_google",
+  });
+  const onPress = React.useCallback(async () => {
+    try {
+      const { createdSessionId, signIn, signUp, setActive } =
+        await startOAuthFlow();
+
+      if (createdSessionId) {
+        setActive({ session: createdSessionId });
+      } else {
+        // signIn or signUp for next steps
+      }
+    } catch (err) {
+      console.error("OAuth error", err);
+    }
+  }, []);
   return (
     <View>
       <View style={styles.container}>
@@ -27,17 +49,9 @@ const LoginScreen = () => {
           Find you favourite business near your and post your own business to
           your community
         </Text>
-        <TouchableOpacity style={styles.btn}>
-          <Text
-            style={{
-              textAlign: "center",
-              color: "#fff",
-              fontFamily: "outfit",
-            }}
-          >
-            Let's Get Started
-          </Text>
-        </TouchableOpacity>
+        <Pressable style={styles.btn} onPress={onPress}>
+          <Text style={styles.btnText}>Let's Get Started</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -78,5 +92,10 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 99,
     marginTop: 20,
+  },
+  btnText: {
+    textAlign: "center",
+    color: "#fff",
+    fontFamily: "outfit",
   },
 });
