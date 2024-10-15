@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Header from "../../components/Home/Header";
+import Slider from "../../components/Home/Slider";
 
 const home = () => {
   return (
@@ -8,6 +9,7 @@ const home = () => {
       {/* Header */}
       <Header />
       {/* Slider */}
+      <Slider />
       {/* Category */}
       {/* Popular Business List */}
     </View>
