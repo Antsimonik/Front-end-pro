@@ -1,8 +1,27 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import { Colors } from "./../../constants/Colors";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "../../configs/FirebaseConfig";
+import CategoryItem from "./CategoryItem";
 
 const Category = () => {
+  const [categoryList, setCategoryList] = useState([]);
+  useEffect(() => {
+    GetCategoryList();
+  }, []);
+
+  const GetCategoryList = async () => {
+    setCategoryList([]);
+    const q = query(collection(db, "Category"));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+      setCategoryList((prev) => [...prev, doc.data()]);
+    });
+  };
+
   return (
     <View>
       <View
@@ -27,6 +46,13 @@ const Category = () => {
           View All
         </Text>
       </View>
+
+      <FlatList
+        data={categoryList}
+        renderItem={({ item, index }) => (
+          <CategoryItem category={item} key={index} />
+        )}
+      />
     </View>
   );
 };
