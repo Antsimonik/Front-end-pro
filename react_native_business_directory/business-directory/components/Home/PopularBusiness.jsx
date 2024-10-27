@@ -26,11 +26,12 @@ export default function PopularBusiness() {
     <View>
       <View
         style={{
-          padding: 20,
+          paddingLeft: 20,
+          marginBottom: 10,
           dispay: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 10,
+          marginTop: 20,
         }}
       >
         <Text
@@ -50,6 +51,7 @@ export default function PopularBusiness() {
       <FlatList
         data={businessList}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <PopularBusinessCard key={index} business={item} />
         )}
