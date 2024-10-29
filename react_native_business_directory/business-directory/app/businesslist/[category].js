@@ -32,7 +32,7 @@ export default function BusinessListByCategory() {
 
     querySnapshot.forEach((doc) => {
       console.log(doc.data());
-      setBusinessList((prev) => [...prev, doc.data()]);
+      setBusinessList((prev) => [...prev, { id: doc?.id, ...doc.data() }]);
     });
     setLoading(false);
   };
@@ -41,12 +41,18 @@ export default function BusinessListByCategory() {
       {businessList?.length > 0 && loading == false ? (
         <FlatList
           data={businessList}
+          onRefresh={getBusinessList}
+          refreshing={loading}
           renderItem={({ item, index }) => (
             <BusinessListCard business={item} key={index} />
           )}
         />
       ) : loading ? (
-        <ActivityIndicator size={"large"} color={Colors.PRIMARY} />
+        <ActivityIndicator
+          style={{ marginTop: "60%" }}
+          size={"large"}
+          color={Colors.PRIMARY}
+        />
       ) : (
         <Text
           style={{
