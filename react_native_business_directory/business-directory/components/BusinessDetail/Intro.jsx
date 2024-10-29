@@ -39,8 +39,21 @@ export default function Intro({ business }) {
           console.log(`Error loading image: ${e.nativeEvent.error}`)
         }
       />
-      <View>
-        <Text>{business.name}</Text>
+      <View
+        style={{
+          padding: 20,
+          marginTop: -20,
+          backgroundColor: "#fff",
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+        }}
+      >
+        <Text style={{ fontSize: 26, fontFamily: "outfit-bold" }}>
+          {business.name}
+        </Text>
+        <Text style={{ fontSize: 18, fontFamily: "outfit" }}>
+          {business.address}
+        </Text>
       </View>
     </View>
   );
