@@ -1,4 +1,12 @@
-import { View, Text, FlatList, Image, Linking } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  Linking,
+  Share,
+  Alert,
+} from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 
@@ -31,11 +39,28 @@ export default function ActionButton({ business }) {
     },
   ];
 
-  const OnPressHandle = (item) => {
-    if (item.name == "share") {
-      return;
+  const OnPressHandle = async (item) => {
+    try {
+      if (item.name === "Share") {
+        await Share.share({
+          message:
+            business?.name +
+            "\n Address: " +
+            business.address +
+            "\n Find more details on Business Directory App by Antsimonik!",
+        });
+      } else {
+        const supported = await Linking.canOpenURL(item.url);
+        if (supported) {
+          await Linking.openURL(item.url);
+        } else {
+          Alert.alert(`Don't know how to open this URL: ${item.url}`);
+        }
+      }
+    } catch (error) {
+      console.error("Error performing action: ", error);
+      Alert.alert("Error", "An error occurred. Please try again.");
     }
-    Linking.openURL(item.url);
   };
   return (
     <View style={{ backgroundColor: "#fff", padding: 20 }}>
@@ -63,6 +88,7 @@ export default function ActionButton({ business }) {
             </Text>
           </TouchableOpacity>
         )}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );
