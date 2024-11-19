@@ -68,8 +68,8 @@ export default function ActionButton({ business }) {
         data={actionButtonMenu}
         numColumns={4}
         columnWrapperStyle={{ justifyContent: "space-between" }}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity key={index} onPress={() => OnPressHandle(item)}>
+        renderItem={({ item }) => (
+          <TouchableOpacity key={item.id} onPress={() => OnPressHandle(item)}>
             <Image
               source={item?.icon}
               style={{

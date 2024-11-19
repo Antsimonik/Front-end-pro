@@ -6,7 +6,7 @@ import { db } from "../../configs/FirebaseConfig";
 import CategoryItem from "./CategoryItem";
 import { useRouter } from "expo-router";
 
-const Category = () => {
+const Category = ({ explore = false, onCategorySelect }) => {
   const [categoryList, setCategoryList] = useState([]);
   const router = useRouter();
   useEffect(() => {
@@ -24,30 +24,40 @@ const Category = () => {
     });
   };
 
+  const onCategoryPressHandler = (item) => {
+    if (!explore) {
+      router.push("/businesslist/" + item.name);
+    } else {
+      onCategorySelect(item.name);
+    }
+  };
+
   return (
     <View>
-      <View
-        style={{
-          padding: 20,
-          dispay: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 10,
-        }}
-      >
-        <Text
+      {!explore && (
+        <View
           style={{
-            paddingLeft: 20,
-            fontSize: 20,
-            fontFamily: "outfit-bold",
+            padding: 20,
+            dispay: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 10,
           }}
         >
-          Category
-        </Text>
-        <Text style={{ color: Colors.PRIMARY, fontFamily: "outfit-medium" }}>
-          View All
-        </Text>
-      </View>
+          <Text
+            style={{
+              paddingLeft: 20,
+              fontSize: 20,
+              fontFamily: "outfit-bold",
+            }}
+          >
+            Category
+          </Text>
+          <Text style={{ color: Colors.PRIMARY, fontFamily: "outfit-medium" }}>
+            View All
+          </Text>
+        </View>
+      )}
 
       <FlatList
         data={categoryList}
@@ -58,9 +68,7 @@ const Category = () => {
           <CategoryItem
             category={item}
             key={index}
-            onCategoryPress={(category) =>
-              router.push("/businesslist/" + item.name)
-            }
+            onCategoryPress={(category) => onCategoryPressHandler(item)}
           />
         )}
       />
