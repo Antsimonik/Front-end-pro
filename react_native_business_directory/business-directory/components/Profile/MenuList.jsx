@@ -16,7 +16,7 @@ export default function MenuList() {
       id: 2,
       name: "My Business",
       icon: require("./../../assets/images/business-and-trade.png"),
-      path: "",
+      path: "/business/my_business",
     },
     {
       id: 3,

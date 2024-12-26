@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
@@ -13,6 +13,25 @@ export default function Intro({ business }) {
   }
 
   const router = useRouter();
+
+  const OnDelete = () => {
+    Alert.alert(
+      "Do you want to Delete?",
+      "Do you really wnt to Delete this buiseness?",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => deleteBusiness(),
+        },
+      ]
+    );
+  };
+
+  const deleteBusiness = () => {
+    console.log("Delete Business");
+  };
 
   return (
     <View>
@@ -41,6 +60,9 @@ export default function Intro({ business }) {
       />
       <View
         style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
           padding: 20,
           marginTop: -20,
           backgroundColor: "#fff",
@@ -48,12 +70,30 @@ export default function Intro({ business }) {
           borderTopRightRadius: 25,
         }}
       >
-        <Text style={{ fontSize: 26, fontFamily: "outfit-bold" }}>
-          {business.name}
-        </Text>
-        <Text style={{ fontSize: 18, fontFamily: "outfit" }}>
-          {business.address}
-        </Text>
+        <View
+          style={{
+            padding: 20,
+            marginTop: -20,
+            backgroundColor: "#fff",
+            borderTopLeftRadius: 25,
+            borderTopRightRadius: 25,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 26,
+              fontFamily: "outfit-bold",
+            }}
+          >
+            {business.name}
+          </Text>
+          <Text style={{ fontSize: 18, fontFamily: "outfit" }}>
+            {business.address}
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => OnDelete()}>
+          <Ionicons name="trash" size={24} color="red" />
+        </TouchableOpacity>
       </View>
     </View>
   );
