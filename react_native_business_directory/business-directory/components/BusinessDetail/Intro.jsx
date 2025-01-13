@@ -1,7 +1,16 @@
-import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+  ToastAndroid,
+} from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import { useUser } from "@clerk/clerk-expo";
+import { EmailAuthCredential } from "firebase/auth/web-extension";
 
 export default function Intro({ business }) {
   if (!business || !business.imageUrl) {
@@ -13,6 +22,7 @@ export default function Intro({ business }) {
   }
 
   const router = useRouter();
+  const { user } = useUser();
 
   const OnDelete = () => {
     Alert.alert(
@@ -29,8 +39,11 @@ export default function Intro({ business }) {
     );
   };
 
-  const deleteBusiness = () => {
+  const deleteBusiness = async () => {
     console.log("Delete Business");
+    await deleteDoc(doc(db, "BusinessList", business?.id));
+    router.back();
+    ToastAndroid.show("Business Deleted!", ToastAndroid.LONG);
   };
 
   return (
@@ -91,9 +104,11 @@ export default function Intro({ business }) {
             {business.address}
           </Text>
         </View>
-        <TouchableOpacity onPress={() => OnDelete()}>
-          <Ionicons name="trash" size={24} color="red" />
-        </TouchableOpacity>
+        {user?.primaryEmailAddress?.emailAddress == business?.userEmail && (
+          <TouchableOpacity onPress={() => OnDelete()}>
+            <Ionicons name="trash" size={24} color="red" />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

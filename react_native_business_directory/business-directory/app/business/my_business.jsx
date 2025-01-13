@@ -4,12 +4,23 @@ import { useUser } from "@clerk/clerk-expo";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../configs/FirebaseConfig";
 import BusinessListCard from "../../components/BusinessList/BusinessListCard";
+import { useNavigation } from "expo-router";
+import { Colors } from "../../constants/Colors";
 
 export default function MyBusiness() {
   const { user } = useUser();
   const [businessList, setBusinessList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
+    navigation.setOptions({
+      headerShow: true,
+      headerTitle: "My Business",
+      headerStyle: {
+        backgroundColor: Colors.PRIMARY,
+      },
+    });
     user && GetUserBusiness();
   }, [user]);
 
@@ -17,6 +28,7 @@ export default function MyBusiness() {
    * Used to get business list by user email
    */
   const GetUserBusiness = async () => {
+    setLoading(true);
     setBusinessList([]);
     const q = query(
       collection(db, "BusinessList"),
@@ -27,6 +39,7 @@ export default function MyBusiness() {
       console.log(doc.data());
       setBusinessList((prev) => [...prev, { id: doc.id, ...doc.data() }]);
     });
+    setLoading(false);
   };
   return (
     <View
@@ -44,6 +57,8 @@ export default function MyBusiness() {
       </Text>
       <FlatList
         data={businessList}
+        onRefresh={GetUserBusiness}
+        refreshing={loading}
         renderItem={({ item, index }) => (
           <BusinessListCard business={item} key={index} />
         )}
