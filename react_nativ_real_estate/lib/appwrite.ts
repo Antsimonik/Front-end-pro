@@ -20,9 +20,10 @@ export const account = new Account(client);
 
 export async function login() {
   try {
-    const redirectUri = Linking.createURL('/')
+    const redirectUri = Linking.createURL('/');
 
-    const response = await account.createOAuth2Token(OAuthProvider.Google.redirectUri);
+    const response = await account.createOAuth2Token(OAuthProvider.Google.
+      redirectUri);
 
     if(!response) throw new Error ('Failed to login');
 
