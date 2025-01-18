@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from "react";
-import { useAppwrite } from "./useAppwrite";
+import { useAppwrite } from "@/lib/useAppwrite";
 import {getCurrentUser} from "./appwrite";
 
 interface User {
@@ -11,7 +11,7 @@ interface User {
 
 interface GlobalContextType {
   isLoggedIn: boolean;
-  user: User | null;
+  user: User | null | undefined;
   loading: boolean;
   refetch: (newParams?: Record<string, string | number>) => Promise<void>;
 }
@@ -20,23 +20,28 @@ const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export const GlobalProvider = ({children}: {children: ReactNode})=> {
   const {
-    data: user, loading, refetch
+    data: user, 
+          loading, 
+          refetch,
+          error,
   } = useAppwrite({
     fn: getCurrentUser,
-    skip: true,
+    // skip: true,
   });
 
   const isLoggedIn = !!user;
   // !null = true => !true = false;
-  // !{mame: 'Adrian'} => false => true
-console.log(JSON.stringify(user, null, 2));
+  // !{mame: 'Adrian'} => false => true;
+
+  const refetchData = async (newParams?: Record<string, string | number>) => { await refetch(newParams || {}); };
+  
 
   return (
     <GlobalContext.Provider value={{
       isLoggedIn,
       user,
       loading,
-      refetch,
+      refetch: refetchData,
     }} >
       {children}
     </GlobalContext.Provider>
@@ -51,6 +56,6 @@ export const useGlobalContext = (): GlobalContextType => {
   }
 
   return context;
-}
+};
 
 export default GlobalProvider;
