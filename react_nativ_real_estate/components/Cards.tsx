@@ -47,7 +47,7 @@ export const Card = ({onPress}: Props) => {
           <Text className='text-base font-rubik-bold text-primary-300' >
             $2,500
           </Text>
-          <Image source={icons.heart} className='w-5 h-5 mr-2 tintColor="#191d31"' />
+          <Image source={icons.heart} className='w-5 h-5 mr-2' tintColor="#191d31" />
         </View>
       </View>
     </TouchableOpacity>
