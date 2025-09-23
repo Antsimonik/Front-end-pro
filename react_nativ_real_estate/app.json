@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.antsimonik.react_nativ_real_estate"
     },
     "web": {
       "bundler": "metro",
@@ -49,6 +50,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7af3ed31-23d9-4566-9193-c325f99192b7"
+      }
     }
   }
 }
